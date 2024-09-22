@@ -4,10 +4,13 @@
     <title>List of Interviews</title>
 </head>
 <body>
-    <h1>Liste of Interviews</h1>
+    <h1>List of Interviews</h1>
     <ul>
         {% for interview in interviews %}
-        <li>{{ interview.company }} - {{ interview.company }}</li>
+        <li>
+            <h1> {{ interview.company }} </h1>
+            <p>{{interview.description}} </p>
+        </li>
         {% endfor %}
     </ul>
 </body>
