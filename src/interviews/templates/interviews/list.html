@@ -4,14 +4,27 @@
     <title>List of Interviews</title>
 </head>
 <body>
-    <h1>List of Interviews</h1>
-    <ul>
-        {% for interview in interviews %}
-        <li>
-            <h1> {{ interview.company }} </h1>
-            <p>{{interview.description}} </p>
-        </li>
-        {% endfor %}
-    </ul>
+    {% block content %}
+        {% if user.is_authenticated %}
+            Welcome to your dashboard {{ user.username }} !
+            <h1>List of Interviews</h1>
+            <ul>
+                {% for interview in interviews %}
+                <li>
+                    <h1> {{ interview.company }} </h1>
+                    <p>{{interview.description}} </p>
+                </li>
+            {% endfor %}
+            </ul>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Log out</button>
+            </form>
+            {% else %}
+                <p>You're not logged in !</p>
+                <a href="{% url 'login' %}">Log In</a>
+            {% endif %}
+    {% endblock %}
+    
 </body>
 </html>
